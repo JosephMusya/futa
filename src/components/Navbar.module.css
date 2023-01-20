@@ -1,0 +1,31 @@
+nav {
+    background-color: rgb(60, 60, 109);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+strong {
+    color: white;
+}
+
+.headings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90vw;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav div img {
+    width: 2rem;
+    object-fit: cover;
+    border-radius: 2rem;
+}
