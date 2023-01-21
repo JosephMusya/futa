@@ -7,6 +7,7 @@ nav {
 
 strong {
     color: white;
+    font-size: 2rem;
 }
 
 .headings {
@@ -28,4 +29,14 @@ nav div img {
     width: 2rem;
     object-fit: cover;
     border-radius: 2rem;
+}
+
+.label {
+    color: white;
+}
+
+.select {
+    padding: 0.3rem;
+    border-radius: 2rem;
+    width: auto;
 }
