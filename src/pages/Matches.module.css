@@ -1,0 +1,47 @@
+.topDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+.epl {
+    width: 90vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.epl img {
+    width: 3rem;
+    object-fit: cover;
+}
+
+.country {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.country img {
+    width: 2rem;
+    object-fit: cover;
+}
+
+.epl select {
+    padding: 1rem;
+    border-radius: 1rem;
+    border-style: none;
+}
+
+.epl select option {
+    color: white;
+    background-color: rgba(60, 60, 109, 1);
+}
+
+div hr {
+    width: 10s0vw;
+    background-color: rgb(60, 60, 109);
+}
