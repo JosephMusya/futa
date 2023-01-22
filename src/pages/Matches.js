@@ -1,110 +1,118 @@
 import styles from './Matches.module.css'
 import Table from './Table';
-import {useState} from 'react';
-    function Matches(){
+import {useState,useEffect} from 'react';
+function Matches(){
         // const apiKey = '89a5bb67ca02563cd394a66791f47168';
+        const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
         // const leaqueId = 39;
-        const [season,setSeason] = useState()
+        const [currentSeason,setCurrentSeason] = useState()
+        const [eplData, setEplData] = useState([])
 
-        function seasonHandler(event){  
-            console.log("Selected season")
-            // console.log(event.target)
-            // setSeason(event.target.value)
+        // const res = {
+        //     "get": "leagues",
+        //     "parameters": {
+        //     "id": "39"
+        //     },
+        //     "errors": [ ],
+        //     "results": 1,
+        //     "paging": {
+        //     "current": 1,
+        //     "total": 1
+        //     },
+        //     "response": [
+        //     {
+        //     "league": {
+        //     "id": 39,
+        //     "name": "Premier League",
+        //     "type": "League",
+        //     "logo": "https://media.api-sports.io/football/leagues/2.png"
+        //     },
+        //     "country": {
+        //     "name": "England",
+        //     "code": "GB",
+        //     "flag": "https://media.api-sports.io/flags/gb.svg"
+        //     },
+        //     "seasons": [
+        //     {
+        //     "year": 2010,
+        //     "start": "2010-08-14",
+        //     "end": "2011-05-17",
+        //     "current": false,
+        //     "coverage": {
+        //     "fixtures": {
+        //     "events": true,
+        //     "lineups": true,
+        //     "statistics_fixtures": false,
+        //     "statistics_players": false
+        //     },
+        //     "standings": true,
+        //     "players": true,
+        //     "top_scorers": true,
+        //     "top_assists": true,
+        //     "top_cards": true,
+        //     "injuries": true,
+        //     "predictions": true,
+        //     "odds": false
+        //     }
+        //     },
+        //     {
+        //     "year": 2011,
+        //     "start": "2011-08-13",
+        //     "end": "2012-05-13",
+        //     "current": false,
+        //     "coverage": {
+        //     "fixtures": {
+        //     "events": true,
+        //     "lineups": true,
+        //     "statistics_fixtures": false,
+        //     "statistics_players": false
+        //     },
+        //     "standings": true,
+        //     "players": true,
+        //     "top_scorers": true,
+        //     "top_assists": true,
+        //     "top_cards": true,
+        //     "injuries": true,
+        //     "predictions": true,
+        //     "odds": false
+        //     }
+        //     }
+        //     ]
+        //     }
+        //     ]
+        //     }        
+        
+        async function getLeague(){
+            const res = await fetch("https://v3.football.api-sports.io/leagues?id=39", {          
+                method: "GET",        
+                headers: {
+                    "x-rapidapi-host": "v3.football.api-sports.io",
+                    "x-rapidapi-key": apiKey
+                },
+            })
 
+            const data = await res.json()
+            const response = await data.response
+            console.log(response)
+            return response
         }
 
-        const res = {
-            "get": "leagues",
-            "parameters": {
-            "id": "39"
-            },
-            "errors": [ ],
-            "results": 1,
-            "paging": {
-            "current": 1,
-            "total": 1
-            },
-            "response": [
-            {
-            "league": {
-            "id": 39,
-            "name": "Premier League",
-            "type": "League",
-            "logo": "https://media.api-sports.io/football/leagues/2.png"
-            },
-            "country": {
-            "name": "England",
-            "code": "GB",
-            "flag": "https://media.api-sports.io/flags/gb.svg"
-            },
-            "seasons": [
-            {
-            "year": 2010,
-            "start": "2010-08-14",
-            "end": "2011-05-17",
-            "current": false,
-            "coverage": {
-            "fixtures": {
-            "events": true,
-            "lineups": true,
-            "statistics_fixtures": false,
-            "statistics_players": false
-            },
-            "standings": true,
-            "players": true,
-            "top_scorers": true,
-            "top_assists": true,
-            "top_cards": true,
-            "injuries": true,
-            "predictions": true,
-            "odds": false
-            }
-            },
-            {
-            "year": 2011,
-            "start": "2011-08-13",
-            "end": "2012-05-13",
-            "current": false,
-            "coverage": {
-            "fixtures": {
-            "events": true,
-            "lineups": true,
-            "statistics_fixtures": false,
-            "statistics_players": false
-            },
-            "standings": true,
-            "players": true,
-            "top_scorers": true,
-            "top_assists": true,
-            "top_cards": true,
-            "injuries": true,
-            "predictions": true,
-            "odds": false
-            }
-            }
-            ]
-            }
-            ]
-            }
-        // console.log(data.response)
+        useEffect(()=>{
+            getLeague().then(response=>{
+                setEplData(response)
+                response.map(
+                    data=>{
+                        const seasons = data.seasons
+                        seasons.map(season=>{
+                            if (season.current){
+                                setCurrentSeason(season.year)
+                            }
+                    })
+                }
+            )
+        })
+        }, [])
 
-        const eplData = res.response
-   
-        
-        // fetch("https://v3.football.api-sports.io/leagues?id=39", {          
-        //     method: "GET",        
-        //     headers: {
-        //         "x-rapidapi-host": "v3.football.api-sports.io",
-        //         "x-rapidapi-key": apiKey
-        //     },
-
-        // })
-        // .then(response => response.text())
-        // .then(result => {
-        //     console.log("Got Something...")
-        //     console.log(JSON.parse(result))
-        // })
-        // .catch(error => console.error('error', error));
         return (
                 <div className={styles.main}>
                     {
@@ -115,10 +123,10 @@ import {useState} from 'react';
                                         <h1>{epl.league.name}</h1>
                                         <img src={epl.league.logo} alt={epl.league.name} />
                                         <article>Seasons available ({epl.seasons.length})</article>
-                                        <select name="season" id="season" onChange={(e)=>setSeason(e.target.value)}>
+                                        <select  name="season" id="season" onChange={(e)=>setCurrentSeason(e.target.value)}>
                                             {
                                                 (epl.seasons).map((season)=>{
-                                                    return <option key={season.year} value={season.year}>{season.year}</option>
+                                                    return <option defaultValue={currentSeason} key={season.year} value={season.year}>{season.year}</option>
                                                 })
                                             }
                                         </select>
@@ -131,7 +139,7 @@ import {useState} from 'react';
                             )
                         })                            
                     }
-                    <Table season={season}/>
+                    <Table season={currentSeason}/>
                 </div>
         )
 }
