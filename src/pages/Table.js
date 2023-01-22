@@ -1,103 +1,124 @@
 import styles from './Table.module.css'
+import {useState,useEffect} from 'react';
+
 function Table(props) {
-    const apiKey = '89a5bb67ca02563cd394a66791f47168';
-    // fetch(
-    //     'https://v3.football.api-sports.io/standings?league=39&season='+props.season,
-    //     {
-    //         method: "GET",        
-    //         headers: {
-    //             "x-rapidapi-host": "v3.football.api-sports.io",
-    //             "x-rapidapi-key": apiKey
-    //         },
-    // })
-    // .then(res=>res.text())
-    // .then(results=>console.log(JSON.parse(results)))
-    // .catch(error=>console.error(error))
-
-    const data = {
-      "get": "standings",
-      "parameters": {
-        "league": "39",
-        "season": "2019"
-      },
-      "errors": [],
-      "results": 1,
-      "paging": {
-        "current": 1,
-        "total": 1
-      },
-      "response": [
+    console.log(props)
+    const currentSeason = String(props.season)
+    // const apiKey = '89a5bb67ca02563cd394a66791f47168';
+    const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
+    const [loading,setLoading] = useState(true)
+    const [loadedData, setLoadedData] = useState([])
+    async function getSeason(){
+      const res = await fetch(
+        'https://v3.football.api-sports.io/standings?league=39&season='+currentSeason,
         {
-          "league": {
-            "id": 39,
-            "name": "Premier League",
-            "country": "England",
-            "logo": "https://media.api-sports.io/football/leagues/2.png",
-            "flag": "https://media.api-sports.io/flags/gb.svg",
-            "season": 2019,
-            "standings": [
-              [
-                {
-                  "rank": 1,
-                  "team": {
-                    "id": 40,
-                    "name": "Liverpool",
-                    "logo": "https://media.api-sports.io/football/teams/40.png"
-                  },
-                  "points": 70,
-                  "goalsDiff": 41,
-                  "group": "Premier League",
-                  "form": "WWWWW",
-                  "status": "same",
-                  "description": "Promotion - Champions League (Group Stage)",
-                  "all": {
-                    "played": 24,
-                    "win": 23,
-                    "draw": 1,
-                    "lose": 0,
-                    "goals": {
-                      "for": 56,
-                      "against": 15
-                    }
-                  },
-                  "home": {
-                    "played": 12,
-                    "win": 12,
-                    "draw": 0,
-                    "lose": 0,
-                    "goals": {
-                      "for": 31,
-                      "against": 9
-                    }
-                  },
-                  "away": {
-                    "played": 12,
-                    "win": 11,
-                    "draw": 1,
-                    "lose": 0,
-                    "goals": {
-                      "for": 25,
-                      "against": 6
-                    }
-                  },
-                  "update": "2020-01-29T00:00:00+00:00"
-                }
-              ]
-            ]
-          }
+            method: "GET",        
+            headers: {
+                "x-rapidapi-host": "v3.football.api-sports.io",
+                "x-rapidapi-key": apiKey
+            },
+      })
+
+      const data = await res.json()
+      const response = await data.response
+      return response
+    }    
+    
+    useEffect(()=>{
+      if(currentSeason){
+        getSeason().then(
+        response=>{
+          setLoadedData(response)
+          setLoading(false)
+          console.log(loadedData)
         }
-      ]
-    }
+      )
+      }
+    },[currentSeason])
+    
+    // const data = {
+    //   "get": "standings",
+    //   "parameters": {
+    //     "league": "39",
+    //     "season": "2019"
+    //   },
+    //   "errors": [],
+    //   "results": 1,
+    //   "paging": {
+    //     "current": 1,
+    //     "total": 1
+    //   },
+    //   "response": [
+    //     {
+    //       "league": {
+    //         "id": 39,
+    //         "name": "Premier League",
+    //         "country": "England",
+    //         "logo": "https://media.api-sports.io/football/leagues/2.png",
+    //         "flag": "https://media.api-sports.io/flags/gb.svg",
+    //         "season": 2019,
+    //         "standings": [
+    //           [
+    //             {
+    //               "rank": 1,
+    //               "team": {
+    //                 "id": 40,
+    //                 "name": "Liverpool",
+    //                 "logo": "https://media.api-sports.io/football/teams/40.png"
+    //               },
+    //               "points": 70,
+    //               "goalsDiff": 41,
+    //               "group": "Premier League",
+    //               "form": "WWWWW",
+    //               "status": "same",
+    //               "description": "Promotion - Champions League (Group Stage)",
+    //               "all": {
+    //                 "played": 24,
+    //                 "win": 23,
+    //                 "draw": 1,
+    //                 "lose": 0,
+    //                 "goals": {
+    //                   "for": 56,
+    //                   "against": 15
+    //                 }
+    //               },
+    //               "home": {
+    //                 "played": 12,
+    //                 "win": 12,
+    //                 "draw": 0,
+    //                 "lose": 0,
+    //                 "goals": {
+    //                   "for": 31,
+    //                   "against": 9
+    //                 }
+    //               },
+    //               "away": {
+    //                 "played": 12,
+    //                 "win": 11,
+    //                 "draw": 1,
+    //                 "lose": 0,
+    //                 "goals": {
+    //                   "for": 25,
+    //                   "against": 6
+    //                 }
+    //               },
+    //               "update": "2020-01-29T00:00:00+00:00"
+    //             }
+    //           ]
+    //         ]
+    //       }
+    //     }
+    //   ]
+    // }
 
-    const standings = data.response
-
+    const standings = loadedData
 
     return (
+        loading ? <div className={styles.loading}>Loading...</div>:
         <div>
             {
               standings.map((data)=>{
                 const teams = (data.league.standings)
-                console.log(teams)
                 return (
                   <div className={styles.tableDiv}>
                     <table>
@@ -121,6 +142,7 @@ function Table(props) {
                               <tr>
                                 <td className={styles.teamName}>
                                   <div>
+                                    <article className={styles.teamRank}>{team.rank}</article>
                                     <img src={team.team.logo} alt={team.team.name} />
                                     {team.team.name} 
                                   </div>                                  
@@ -138,9 +160,8 @@ function Table(props) {
                               )
                             })
                           )
-                        })                                         
-                        
-                        }                                        
+                        })                                                                 
+                      }                                        
                     </table>
                   </div>
                   )
