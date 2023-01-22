@@ -1,0 +1,37 @@
+.tableDiv {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100vw;
+    border-collapse: collapse;
+    border: solid 0.1rem rgb(60, 60, 109);
+}
+
+th {
+    text-align: left;
+    border-bottom: solid 0.1rem rgb(60, 60, 109);
+    padding: 0.7rem;
+}
+
+td {
+    padding: 0.7rem;
+    text-align: left;
+}
+
+td div img {
+    object-fit: cover;
+    width: 1.5rem;
+}
+
+td div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.teamName,
+.teamForm {
+    width: 15vw;
+}
