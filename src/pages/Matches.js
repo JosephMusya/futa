@@ -1,8 +1,17 @@
 import styles from './Matches.module.css'
 import Table from './Table';
+import {useState} from 'react';
     function Matches(){
-        const apiKey = '89a5bb67ca02563cd394a66791f47168';
-        const leaqueId = 39;
+        // const apiKey = '89a5bb67ca02563cd394a66791f47168';
+        // const leaqueId = 39;
+        const [season,setSeason] = useState()
+
+        function seasonHandler(event){  
+            console.log("Selected season")
+            // console.log(event.target)
+            // setSeason(event.target.value)
+
+        }
 
         const res = {
             "get": "leagues",
@@ -80,8 +89,7 @@ import Table from './Table';
         // console.log(data.response)
 
         const eplData = res.response
-        console.log(eplData)
-        console.log('-------------------------------')
+   
         
         // fetch("https://v3.football.api-sports.io/leagues?id=39", {          
         //     method: "GET",        
@@ -98,7 +106,7 @@ import Table from './Table';
         // })
         // .catch(error => console.error('error', error));
         return (
-                <div>
+                <div className={styles.main}>
                     {
                         eplData.map(epl=>{
                             return (
@@ -107,7 +115,7 @@ import Table from './Table';
                                         <h1>{epl.league.name}</h1>
                                         <img src={epl.league.logo} alt={epl.league.name} />
                                         <article>Seasons available ({epl.seasons.length})</article>
-                                        <select name="season" id="season">
+                                        <select name="season" id="season" onChange={(e)=>setSeason(e.target.value)}>
                                             {
                                                 (epl.seasons).map((season)=>{
                                                     return <option key={season.year} value={season.year}>{season.year}</option>
@@ -123,7 +131,7 @@ import Table from './Table';
                             )
                         })                            
                     }
-                    <Table/>
+                    <Table season={season}/>
                 </div>
         )
 }
