@@ -1,13 +1,10 @@
 import styles from './Matches.module.css'
-import Table from './Table';
-import {useState,useEffect} from 'react';
+// import Table from './Table';
+import {useState,useContext} from 'react';
+import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 function Matches(){
-        // const apiKey = '89a5bb67ca02563cd394a66791f47168';
-        const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
-        // const leaqueId = 39;
-        const [currentSeason,setCurrentSeason] = useState(null)
-        const [eplData, setEplData] = useState([])
-
+        const [eplData,,currentSeason,setCurrentSeason ] = useContext(SeasonContext)
+        console.log(eplData)
         const rawData = {
             "get": "leagues",
             "parameters": {
@@ -82,38 +79,6 @@ function Matches(){
             ]
             }        
         
-        async function getLeague(){
-            const res = await fetch("https://v3.football.api-sports.io/leagues?id=39", {          
-                method: "GET",        
-                headers: {
-                    "x-rapidapi-host": "v3.football.api-sports.io",
-                    "x-rapidapi-key": apiKey
-                },
-            })
-
-            const data = await res.json()
-            const response = await data.response
-            console.log(response)
-            // return response
-            return rawData.response
-        }
-
-        useEffect(()=>{
-            getLeague().then(response=>{
-                setEplData(response)
-                response.map(
-                    data=>{
-                        const seasons = data.seasons
-                        seasons.map(season=>{
-                            if (season.current){
-                                setCurrentSeason(season.year)
-                            }
-                    })
-                }
-            )
-        })
-        }, [])
-
         return (
                 <div className={styles.main}>
                     {
@@ -124,10 +89,10 @@ function Matches(){
                                         <h1>{epl.league.name}</h1>
                                         <img src={epl.league.logo} alt={epl.league.name} />
                                         <article>Seasons available ({epl.seasons.length})</article>
-                                        <select  name="season" id="season" onChange={(e)=>setCurrentSeason(e.target.value)}>
+                                        <select  name="season" id="season" >
                                             {
                                                 (epl.seasons).map((season)=>{
-                                                    return <option defaultValue={currentSeason} key={season.year} value={season.year}>{season.year}</option>
+                                                    return <option defaultValue={currentSeason} key={season.year} value={season.year} onChange={(e)=>setCurrentSeason(e.target.value)}>{season.year}</option>
                                                 })
                                             }
                                         </select>
@@ -139,8 +104,8 @@ function Matches(){
                                 </div>
                             )
                         })                            
-                    }
-                    <Table season={currentSeason}/>
+                    }                    
+
                 </div>
         )
 }

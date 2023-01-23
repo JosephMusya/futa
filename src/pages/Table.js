@@ -1,10 +1,14 @@
 import styles from './Table.module.css'
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useContext} from 'react';
+import {Link} from 'react-router-dom';
+import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 
-function Table(props) {    
-    const currentSeason = String(props.season)
-    // const apiKey = '89a5bb67ca02563cd394a66791f47168';
-    const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
+function Table() {    
+    const apiKey = '89a5bb67ca02563cd394a66791f47168';
+    // const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
+
+    const [,,currentSeason,] = useContext(SeasonContext)
+    console.log(currentSeason)
     const [loading,setLoading] = useState(true)
     const [loadedData, setLoadedData] = useState([])
 
@@ -310,7 +314,7 @@ function Table(props) {
 
     async function getSeason(){
       const res = await fetch(
-        'https://v3.football.api-sports.io/standings?league=39&season='+currentSeason,
+        'https://v3.football.api-sports.io/standings?league=39&season='+String(currentSeason),
         {
             method: "GET",        
             headers: {
@@ -321,8 +325,8 @@ function Table(props) {
 
       const data = await res.json()
       const response = await data.response
-      // return response
-      return rawData.response
+      return response
+      // return rawData.response
     }    
     
     useEffect(()=>{
@@ -372,6 +376,7 @@ function Table(props) {
                                   <div>
                                     <article className={styles.teamRank}>{team.rank}</article>
                                     <img src={team.team.logo} alt={team.team.name} />
+                                    <Link to='/team-staticstics'></Link>
                                     {team.team.name} 
                                   </div>                                  
                                 </td>
