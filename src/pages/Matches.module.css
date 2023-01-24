@@ -41,10 +41,12 @@
 
 .epl select option {
     color: white;
+    /* align-items: center; */
     background-color: rgba(60, 60, 109, 1);
+    font-size: 1rem;
 }
 
 div hr {
-    width: 10s0vw;
+    width: 100vw;
     background-color: rgb(60, 60, 109);
 }
