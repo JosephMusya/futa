@@ -5,7 +5,7 @@ export const SeasonContext = createContext()
 export const SeasonProvider = props => {
     const apiKey = '89a5bb67ca02563cd394a66791f47168';    
     const [eplData, setEplData] = useState([])
-    const [currentSeason,setCurrentSeason] = useState(2022)
+    const [currentSeason,setCurrentSeason] = useState()
 
     async function getLeague(){
         const res = await fetch("https://v3.football.api-sports.io/leagues?id=39", {          
