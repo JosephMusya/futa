@@ -2,7 +2,8 @@ import styles from './Table.module.css'
 import {useState,useEffect,useContext} from 'react';
 import {Link} from 'react-router-dom';
 import { SeasonContext } from '../SeasonProvider/SeasonProvider';
-
+import win from '../media/win.webp';
+import lost from '../media/lost.webp';
 function Table() {    
     const apiKey = '89a5bb67ca02563cd394a66791f47168';
     // const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
@@ -387,8 +388,34 @@ function Table() {
                                 <td>{team.all.lose}</td>
                                 <td>{team.all.goals.for}</td>
                                 <td>{team.all.goals.against}</td>
-                                <td>{team.goalsDiff}</td>
-                                <td className={styles.teamForm}>{team.form}</td>
+                                <td>{team.goalsDiff}</td>                              
+                                {/* <td className={styles.teamForm}>{team.form}</td> */}
+                                {
+                                  (team.form.split('')).map(form=>{
+                                    if (form==='W'){
+                                      return <td className={styles.form}>
+                                        <div>
+                                          <img className={styles.win} src={win} alt="Winning Icon" />
+                                        </div>
+                                      </td>
+                                    }
+
+                                    else if (form==='D'){
+                                      return <td className={styles.form}>
+                                        <div>
+                                        </div>
+                                      </td>
+                                    }
+
+                                    else if (form=='L'){
+                                      return <td className={styles.form}>
+                                        <div>
+                                          <img className={styles.lost} src={lost} alt="Lost Icon" />
+                                        </div>
+                                      </td>
+                                    }
+                                  })
+                                }
                               </tr>
                               )
                             })
