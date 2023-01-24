@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 import win from '../media/win.webp';
 import lost from '../media/lost.webp';
+import Statistics from './Statistics';
+
 function Table() {    
     const apiKey = '89a5bb67ca02563cd394a66791f47168';
     // const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
@@ -377,8 +379,7 @@ function Table() {
                                   <div>
                                     <article className={styles.teamRank}>{team.rank}</article>
                                     <img src={team.team.logo} alt={team.team.name} />
-                                    <Link to='/team-staticstics'></Link>
-                                    {team.team.name} 
+                                    <Link to='/team-staticstics'>{team.team.name}</Link>                                     
                                   </div>                                  
                                 </td>
                                 <td>{team.points}</td>
@@ -388,34 +389,30 @@ function Table() {
                                 <td>{team.all.lose}</td>
                                 <td>{team.all.goals.for}</td>
                                 <td>{team.all.goals.against}</td>
-                                <td>{team.goalsDiff}</td>                              
-                                {/* <td className={styles.teamForm}>{team.form}</td> */}
+                                <td>{team.goalsDiff}</td>  
+                                <td className={styles.form}>                            
                                 {
                                   (team.form.split('')).map(form=>{
                                     if (form==='W'){
-                                      return <td className={styles.form}>
-                                        <div>
+                                      return <div>
                                           <img className={styles.win} src={win} alt="Winning Icon" />
                                         </div>
-                                      </td>
                                     }
 
                                     else if (form==='D'){
-                                      return <td className={styles.form}>
-                                        <div>
+                                      return <div>
+                                          <img className={styles.win} src={win} alt="Winning Icon" />
                                         </div>
-                                      </td>
                                     }
 
                                     else if (form=='L'){
-                                      return <td className={styles.form}>
-                                        <div>
+                                      return <div>
                                           <img className={styles.lost} src={lost} alt="Lost Icon" />
                                         </div>
-                                      </td>
                                     }
                                   })
                                 }
+                                </td>
                               </tr>
                               )
                             })
@@ -423,6 +420,7 @@ function Table() {
                         })                                                                 
                       }                                        
                     </table>
+                    <Statistics/>
                   </div>
                   )
               })

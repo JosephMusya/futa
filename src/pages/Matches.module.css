@@ -21,6 +21,25 @@
     object-fit: cover;
 }
 
+.epl img:hover {
+    animation: roar 1s infinite;
+}
+
+.epl img:hover {
+    transform: scale(1.7);
+    transition: 1s;
+    animation: roar 1s infinite
+}
+
+@keyframes roar {
+    from {
+        /* transform: rotate(0deg); */
+    }
+    to {
+        /* transform: scale(2); */
+    }
+}
+
 .country {
     display: flex;
     justify-content: flex-end;
