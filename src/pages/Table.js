@@ -314,6 +314,51 @@ function Table() {
                   },
                   "update": "2020-01-29T00:00:00+00:00"
                 },
+                {
+                  "rank": 1,
+                  "team": {
+                    "id": 40,
+                    "name": "Liverpool",
+                    "logo": "https://media.api-sports.io/football/teams/40.png"
+                  },
+                  "points": 70,
+                  "goalsDiff": 41,
+                  "group": "Premier League",
+                  "form": "WWWWW",
+                  "status": "same",
+                  "description": "Promotion - Champions League (Group Stage)",
+                  "all": {
+                    "played": 24,
+                    "win": 23,
+                    "draw": 1,
+                    "lose": 0,
+                    "goals": {
+                      "for": 56,
+                      "against": 15
+                    }
+                  },
+                  "home": {
+                    "played": 12,
+                    "win": 12,
+                    "draw": 0,
+                    "lose": 0,
+                    "goals": {
+                      "for": 31,
+                      "against": 9
+                    }
+                  },
+                  "away": {
+                    "played": 12,
+                    "win": 11,
+                    "draw": 1,
+                    "lose": 0,
+                    "goals": {
+                      "for": 25,
+                      "against": 6
+                    }
+                  },
+                  "update": "2020-01-29T00:00:00+00:00"
+                },
               ]
             ]
           }
@@ -334,12 +379,12 @@ function Table() {
 
       const data = await res.json()
       const response = await data.response
-      return response
-      // return rawData.response
+      // return response
+      return rawData.response
     }    
     
     useEffect(()=>{
-      if(currentSeason){
+      if(!currentSeason){
         console.log("Getting standings...")
         getSeason().then(
         response=>{
@@ -358,10 +403,10 @@ function Table() {
         loading ? <div className={styles.loading}>Loading...</div>:
         <div>
             {
-              standings.map((data)=>{
+              standings.map((data,index)=>{
                 const teams = (data.league.standings);  
                 return (
-                  <div className={styles.tableDiv}>
+                  <div key={index} className={styles.tableDiv}>
                     <table>
                       <tr>
                         <th>Team</th>
@@ -377,14 +422,12 @@ function Table() {
                       </tr>    
                         {
                         teams.map(team=>{  
-                          const unTrancatedTeams = team 
-                          const trancatedTeams = team.splice(5)
-                          console.log(unTrancatedTeams)
-                          console.log(trancatedTeams)                         
+                          const trancatedTeams = team.slice(0,3)
+                                                   
                           return (                       
-                            (trancated?trancatedTeams:unTrancatedTeams).map(team=>{
+                            (trancated?trancatedTeams:team).map((team,index)=>{
                               return (
-                              <tr>
+                              <tr key={index}>
                                 <td className={styles.teamName}>
                                   <div>
                                     <article className={styles.teamRank}>{team.rank}</article>
@@ -402,7 +445,7 @@ function Table() {
                                 <td>{team.goalsDiff}</td>  
                                 <td className={styles.form}>                            
                                 {
-                                  (team.form.split('')).map(form=>{
+                                  (team.form.split('')).map((form)=>{
                                     if (form==='W'){
                                       return <div>
                                           <img className={styles.win} src={win} alt="Winning Icon" />
@@ -434,7 +477,7 @@ function Table() {
                       trancated ? <button onClick={trancateHandler}>More</button> : 
                       <button onClick={trancateHandler}>Less</button>
                     }
-                    <Statistics/>
+                    <Statistics apiKey={apiKey} season={currentSeason}/>
                   </div>
                   )
               })

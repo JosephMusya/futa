@@ -1,5 +1,4 @@
 import styles from './Matches.module.css'
-// import Table from './Table';
 import {useState,useContext} from 'react';
 import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 function Matches(){
@@ -7,14 +6,11 @@ function Matches(){
         
         console.log(eplData)  
         
-        function handleChange(){
-            console.log("Changed...")
-        }
-        
         return (
                 <div className={styles.main}>
                     {
                         eplData.map(epl=>{
+                            console.log(epl)
                             return (
                                 <div key={epl.country.name} className={styles.topDiv}>
                                     <div className={styles.epl}>
@@ -24,7 +20,7 @@ function Matches(){
                                         <select  name="season" id="season" onChange={(e)=>setCurrentSeason(e.target.value)}>
                                             {
                                                 (epl.seasons).map((season)=>{
-                                                    return <option defaultValue={currentSeason} key={season.year} value={season.year} onChange={handleChange}>{season.year}</option>
+                                                    return <option defaultValue={currentSeason} key={season.year} value={season.year}>{season.year}</option>
                                                 })
                                             }
                                         </select>
