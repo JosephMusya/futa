@@ -10,8 +10,9 @@
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    background-color: rgb(243, 239, 239);
+    background-color: #efefef;
     width: 20rem;
+    border-radius: 1rem;
 }
 
 .head {
@@ -19,6 +20,9 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    border-bottom: solid 0.01rem #3c3c6d;
+    margin-bottom: 0.5rem;
+    padding: 0;
 }
 
 .playerInfo {
@@ -39,4 +43,20 @@
     width: 2rem;
     aspect-ratio: 1;
     border-radius: 2rem;
+}
+
+.player:hover {
+    transform: scaleX(1.05);
+    transition: 0.7s;
+}
+
+.teamLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamLogo img {
+    width: 5rem;
 }

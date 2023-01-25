@@ -11,6 +11,7 @@ table {
     border: solid rgb(60, 60, 109);
     border-width: 0.001rem;
     object-fit: cover;
+    border-radius: 1rem;
 }
 
 table:hover {
@@ -43,7 +44,7 @@ td div {
 }
 
 tr:nth-child(odd) {
-    background: rgb(243, 239, 239)
+    background: #efefef
 }
 
 .teamName {
