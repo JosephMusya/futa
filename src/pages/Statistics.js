@@ -211,7 +211,6 @@ function Statistics(props){
   ]
 }
     const topScorers = rawData.response
-    console.log(rawData.response)
     async function getStatistics(){
         const res = await fetch(
         'https://v3.football.api-sports.io/players/topscorers?season='+ String(season)+'&league=39',
@@ -239,13 +238,13 @@ function Statistics(props){
     },[])
 
     return (
-        <div className=''>
-            <h1>Top Scorers</h1>
+        <div className={styles.main}>
+            <h3>{season} &nbsp; Top Scorers</h3>
             <div className={styles.topScorers}>
                 {
                 topScorers.map((player,index)=>{
                     return (
-                        <div className=''>
+                        <div className={styles.main}>
                             <div className={styles.player} key={index}>
                                 <div className={styles.head}>
                                     <p>{player.player.name}</p>
@@ -260,7 +259,11 @@ function Statistics(props){
                                     (player.statistics).map(stats=>{
                                         return (
                                             <div className=''>
-                                                <p>Team {stats.team.name}</p>
+                                                {/* <p>Team {stats.team.name}</p> */}
+                                                <div className={styles.teamLogo}>
+                                                    <img src={stats.team.logo} alt={stats.team.name} />
+                                                </div>
+                                                
                                                 {/* <div>
                                                     <img src={stats.team.logo} alt={stats.team.name} />
                                                 </div>                                                 */}
@@ -273,7 +276,7 @@ function Statistics(props){
                                                     </div>                                                 
                                                 </div>
                                                 <div className={styles.playerMenu}>
-                                                    <p>Rating {stats.games.rating}</p>   
+                                                    <p>Rating {parseFloat(stats.games.rating).toFixed(1)}</p>   
                                                 </div>                                                                                                                                             
                                             </div>
                                         )
