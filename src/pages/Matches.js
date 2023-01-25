@@ -4,7 +4,6 @@ import {useState,useContext} from 'react';
 import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 function Matches(){
         const [eplData,,currentSeason,setCurrentSeason ] = useContext(SeasonContext)
-        console.log(currentSeason)
         
         console.log(eplData)  
         

@@ -7,13 +7,19 @@ import lost from '../media/lost.webp';
 import Statistics from './Statistics';
 
 function Table() {    
-    const apiKey = '89a5bb67ca02563cd394a66791f47168';
+    const apiKey = 'f8422dea87f3917ea0746070d48e623e';
+    // const apiKey = 'e626274aa51b9e7d5d31ff1b317c2d01'
     // const apiKey = 'cecdb0e87445150864d079cd5c982aa5'
 
     const [,,currentSeason,] = useContext(SeasonContext)
-    console.log(currentSeason)
     const [loading,setLoading] = useState(true)
     const [loadedData, setLoadedData] = useState([])
+    const [trancated, setTrancated] = useState(true)
+
+    function trancateHandler(){
+      setTrancated(!trancated)
+      console.log(trancated)
+    }
 
     const rawData = {
       "get": "standings",
@@ -346,14 +352,14 @@ function Table() {
       }
     },[currentSeason])      
 
-    const standings = loadedData
+    const standings = loadedData    
 
     return (
         loading ? <div className={styles.loading}>Loading...</div>:
         <div>
             {
               standings.map((data)=>{
-                const teams = (data.league.standings)
+                const teams = (data.league.standings);  
                 return (
                   <div className={styles.tableDiv}>
                     <table>
@@ -370,9 +376,13 @@ function Table() {
                         <th>Form</th>
                       </tr>    
                         {
-                        teams.map(team=>{
-                          return (
-                            team.map(team=>{
+                        teams.map(team=>{  
+                          const unTrancatedTeams = team 
+                          const trancatedTeams = team.splice(5)
+                          console.log(unTrancatedTeams)
+                          console.log(trancatedTeams)                         
+                          return (                       
+                            (trancated?trancatedTeams:unTrancatedTeams).map(team=>{
                               return (
                               <tr>
                                 <td className={styles.teamName}>
@@ -420,6 +430,10 @@ function Table() {
                         })                                                                 
                       }                                        
                     </table>
+                    {
+                      trancated ? <button onClick={trancateHandler}>More</button> : 
+                      <button onClick={trancateHandler}>Less</button>
+                    }
                     <Statistics/>
                   </div>
                   )
