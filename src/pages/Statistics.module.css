@@ -1,0 +1,42 @@
+.topScorers {
+    display: flex;
+    gap: 1rem;
+}
+
+.player {
+    width: 10rem;
+    height: 16rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background-color: rgb(243, 239, 239);
+    width: 20rem;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.playerInfo {
+    /* background-color: red; */
+    display: flex;
+    /* justify-content: center; */
+    gap: 0.5rem;
+}
+
+.playerMenu {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.soccerBall img {
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 2rem;
+}
