@@ -3,8 +3,8 @@ import { useEffect,useState,createContext } from "react";
 export const SeasonContext = createContext()
 
 export const SeasonProvider = props => {
-    // const apiKey = 'f8422dea87f3917ea0746070d48e623e';   
-    const apiKey= 'e626274aa51b9e7d5d31ff1b317c2d01' 
+    const apiKey = 'f8422dea87f3917ea0746070d48e623e';   
+    // const apiKey= 'e626274aa51b9e7d5d31ff1b317c2d01' 
     // const apiKey ='cecdb0e87445150864d079cd5c982aa5'
     const [eplData, setEplData] = useState([])
     const [currentSeason,setCurrentSeason] = useState()    
