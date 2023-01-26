@@ -14,7 +14,7 @@ function Matches(){
                             return (
                                 <div key={epl.country.name} className={styles.topDiv}>
                                     <div className={styles.epl}>
-                                        <h1>{epl.league.name}</h1>
+                                        <h2>{epl.league.name}</h2>
                                         <img src={epl.league.logo} alt={epl.league.name} />
                                         <article>Seasons available ({epl.seasons.length})</article>
                                         <select  name="season" id="season" onChange={(e)=>setCurrentSeason(e.target.value)}>
