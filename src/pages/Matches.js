@@ -4,7 +4,7 @@ import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 function Matches(){
         const [eplData,,currentSeason,setCurrentSeason ] = useContext(SeasonContext)
         
-        console.log(eplData)  
+        // console.log(eplData)  
         
         return (
                 <div className={styles.main}>
