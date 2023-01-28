@@ -3,8 +3,8 @@ import { useEffect,useState,createContext } from "react";
 export const SeasonContext = createContext()
 
 export const SeasonProvider = props => {
-    const apiKey = 'f8422dea87f3917ea0746070d48e623e';   
-    // const apiKey= 'e626274aa51b9e7d5d31ff1b317c2d01' 
+    const apiKey = '8608e2b7a0cdd28b652244462596a009';   
+    // const apiKey= 'e626274aa51b9e7d5d31f317c2d01' 
     // const apiKey ='cecdb0e87445150864d079cd5c982aa5'
     const [eplData, setEplData] = useState([])
     const [currentSeason,setCurrentSeason] = useState()    
@@ -95,8 +95,8 @@ export const SeasonProvider = props => {
         console.log(data)
         const response = await data.response
         // console.log(response)
-        // return response
-        return rawData.response
+        return response
+        // return rawData.response
     }
 
     useEffect(()=>{
