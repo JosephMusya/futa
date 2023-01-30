@@ -78,7 +78,7 @@ function Table() {
                       </tr>    
                         {
                         teams.map(team=>{  
-                          const trancatedTeams = team.slice(0,2)
+                          const trancatedTeams = team.slice(0,5)
                                                    
                           return (                       
                             (trancated?trancatedTeams:team).map((team,index)=>{
