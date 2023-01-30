@@ -29,7 +29,7 @@ function Statistics(props){
           console.log(loadedPlayers)
         }
       )
-    },[])
+    },[season])
 
     return (
         <div className={styles.main}>
