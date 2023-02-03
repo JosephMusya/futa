@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { SeasonContext } from '../SeasonProvider/SeasonProvider';
 import win from '../media/win.webp';
 import lost from '../media/lost.webp';
+import draw from '../media/draw.png';
 import Statistics from './Statistics';
 
 function Table() {    
@@ -110,7 +111,7 @@ function Table() {
 
                                     else if (form==='D'){
                                       return <div>
-                                          <img className={styles.win} src={win} alt="Winning Icon" />
+                                          <img className={styles.win} src={draw} alt="Winning Icon" />
                                         </div>
                                     }
 
