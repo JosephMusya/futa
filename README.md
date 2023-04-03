@@ -1,4 +1,4 @@
-#About
+# About
 
 This project collects football data and in the EPL API.
 
