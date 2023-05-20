@@ -1,4 +1,4 @@
-# About the site
+# About the futa
 
 This project collects football data and in the sports API.
 
