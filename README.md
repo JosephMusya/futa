@@ -1,4 +1,4 @@
-# About the futa
+# About futa
 
 FUTA COLllects football data and in the sports API.
 
