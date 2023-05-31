@@ -9,3 +9,5 @@ The number of requests are currently limited to 100 in every 24hrs.
 Initial phase, non-responsive 
 
 ### How to run
+npm i
+npm start
