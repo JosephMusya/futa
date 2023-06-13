@@ -10,4 +10,5 @@ Initial phase, non-responsive
 
 ### How to run
 npm i
+
 npm start
