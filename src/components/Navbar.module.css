@@ -8,6 +8,7 @@ nav {
 strong {
     color: white;
     font-size: 2rem;
+    font-size: large;
 }
 
 .headings {
@@ -16,6 +17,10 @@ strong {
     justify-content: flex-end;
     width: 90vw;
     gap: 2rem;
+}
+
+.headings a {
+    font-size: small;
 }
 
 .logo {

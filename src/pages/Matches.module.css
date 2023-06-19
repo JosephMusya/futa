@@ -15,6 +15,12 @@
     align-items: center;
     gap: 1.5rem;
 }
+h2 {
+    font-size: medium;
+}
+.epl article {
+    font-size: small;
+}
 
 .epl img {
     width: 3rem;
@@ -53,14 +59,13 @@
 }
 
 .epl select {
-    padding: 0.7rem;
+    padding: 0.2rem;
     border-radius: 1rem;
     border-style: none;
 }
 
 .epl select option {
     color: white;
-    /* align-items: center; */
     background-color: rgba(60, 60, 109, 1);
 }
 
