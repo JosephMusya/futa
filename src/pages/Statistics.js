@@ -46,13 +46,13 @@ function Statistics(props){
                                 </div>
                                 <div className={styles.playerInfo}>
                                     <div>
-                                        <img src={player.player.photo} alt="player.player.name" />                                
+                                        <img className={styles.profile} src={player.player.photo} alt="player.player.name" />                                
                                     </div>
                                     <div>
                                         {
                                     (player.statistics).map(stats=>{
                                         return (
-                                            <div className=''>
+                                            <div className={styles.info}>
                                                 {/* <p>Team {stats.team.name}</p> */}
                                                 <div className={styles.teamLogo}>
                                                     <img src={stats.team.logo} alt={stats.team.name} />
