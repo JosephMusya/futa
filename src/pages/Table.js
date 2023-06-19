@@ -48,7 +48,7 @@ function Table() {
           setLoadedData(response)
           setLoading(false)
           console.log("Fetched data...")
-          console.log(loadedData)
+          console.log(response)
         }
       )
       }
@@ -102,7 +102,7 @@ function Table() {
                                 <td>{team.goalsDiff}</td>  
                                 <td className={styles.form}>                            
                                 {
-                                  (team.form.split('')).map((form)=>{
+                                  team.form?((team.form).split('')).map((form)=>{
                                     if (form==='W'){
                                       return <div>
                                           <img className={styles.win} src={win} alt="Winning Icon" />
@@ -120,7 +120,7 @@ function Table() {
                                           <img className={styles.lost} src={lost} alt="Lost Icon" />
                                         </div>
                                     }
-                                  })
+                                  }):null
                                 }
                                 </td>
                               </tr>
