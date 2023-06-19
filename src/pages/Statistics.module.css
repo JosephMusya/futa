@@ -1,35 +1,39 @@
-.topScorers {
+.main h3 {
+    font-size: small;
+}.topScorers {
     display: flex;
     gap: 1rem;
 }
 
 .player {
-    width: 10rem;
-    height: 18rem;
-    /* overflow-y: auto; */
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    background-color: #efefef;
-    width: 20rem;
     border-radius: 1rem;
+    border: solid #efefef 0.15rem;
 }
 
 .head {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     border-bottom: solid 0.01rem #3c3c6d;
     margin-bottom: 0.5rem;
     padding: 0;
 }
 
+.head p {
+    font-size: small;
+}
+
 .playerInfo {
-    /* background-color: red; */
     display: flex;
-    /* justify-content: center; */
     gap: 0.5rem;
+}
+
+.playerInfo div .profile {
+    width: 3.5rem;
 }
 
 .playerMenu {
@@ -39,15 +43,16 @@
     gap: 0.5rem;
 }
 
-.soccerBall img {
-    width: 2rem;
-    aspect-ratio: 1;
-    border-radius: 2rem;
+.playerMenu p {
+    padding: 0;
+    margin: 0rem;
+    font-size: small;
 }
 
-.player:hover {
-    transform: scaleX(1.05);
-    transition: 0.7s;
+
+.soccerBall img {
+    width: 1rem;
+    aspect-ratio: 1;
 }
 
 .teamLogo {
@@ -58,5 +63,13 @@
 }
 
 .teamLogo img {
-    width: 5rem;
+    width: 2rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.1rem;    
 }
