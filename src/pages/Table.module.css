@@ -1,7 +1,5 @@
 .tableDiv {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 0.5rem;
 }
 
@@ -89,4 +87,20 @@ div button {
     color: white;
     border-radius: 1rem;
     margin-top: 0.2rem;
+}
+
+@media screen and (max-width: 1055px) {
+    .tableDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+}
+
+@media screen and (max-width: 590px) {
+    table {
+        /* width: 95vw; */
+        overflow-x: scroll;
+    }
 }
