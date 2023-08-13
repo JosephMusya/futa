@@ -1,5 +1,5 @@
 # Futa
-Collects football data and in the sports API.
+Collects football data using the sports API.
 
 ### Rate Limiting 
 The number of requests are currently limited to 100 requests per user in every 24 hours 
