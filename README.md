@@ -11,7 +11,9 @@ Initial phase, non-responsive
 ```
 npm i
 ```
-
+```
+npm build 
+```
 ```
 npm start
 ```
