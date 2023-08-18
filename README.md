@@ -7,6 +7,8 @@ The number of requests are currently limited to 100 requests per user in every 2
 ### Development phase - phase1
 Initial phase, non-responsive 
 
+### phase 2
+
 ### How to run
 ```
 npm i
