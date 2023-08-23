@@ -11,7 +11,7 @@ Initial phase, non-responsive
 ### phase 3
 ### phase 4
 
-### How to run
+### How to install and run
 ```
 npm i
 ```
