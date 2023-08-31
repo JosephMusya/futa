@@ -9,7 +9,6 @@ Initial phase, non-responsive
 
 ### phase 2
 ### phase 3
-### phase 4
 
 ### How to install and run
 ```
