@@ -2,7 +2,7 @@
 Collects football data using the sports API.
 
 ### Rate Limiting 
-The number of requests to the main API are currently limited to 100 requests per user in every 24 hours 
+The number of requests to the main API are currently limited to 100 requests per user a day
 
 ### Development phase - phase1
 Initial phase, non-responsive
