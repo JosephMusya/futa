@@ -4,7 +4,7 @@ The number of requests to the main API are currently limited to 100 requests in 
 ### Development phase - phase1
 Initial phase, non-responsive
 
-### Installation
+### Dependancy Installation
 ```
 npm i
 ```
